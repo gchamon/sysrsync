@@ -76,7 +76,7 @@ def test_rsync_exclusions_target_ssh():
     target = '/b'
     exclusions = ['file1', 'file2']
     expect = 'rsync /a/ host1:/b --exclude file1 --exclude file2'.split()
-    result = get_rsync_command(source, target, exclusions=exclusions, target_ssh=target_ssh)
+    result = get_rsync_command(source, target, exclusions=exclusions, destination_ssh=target_ssh)
 
     eq_(expect, result)
 
@@ -88,4 +88,4 @@ def test_rsync_throws_both_remotes():
     source = '/a'
     target_ssh = 'host2'
     target = '/b'
-    get_rsync_command(source, target, source_ssh=source_ssh, target_ssh=target_ssh)
+    get_rsync_command(source, target, source_ssh=source_ssh, destination_ssh=target_ssh)

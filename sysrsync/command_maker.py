@@ -10,15 +10,15 @@ from .helpers.iterators import flatten
 def get_rsync_command(source: str,
                       destination: str,
                       source_ssh: Optional[str] = None,
-                      target_ssh: Optional[str] = None,
+                      destination_ssh: Optional[str] = None,
                       exclusions: Iterable[str] = [],
                       sync_source_contents: bool = True,
                       options: Iterable[str] = []) -> List[str]:
-    if (source_ssh is not None and target_ssh is not None):
+    if (source_ssh is not None and destination_ssh is not None):
         raise RemotesError()
 
     source = get_directory_with_ssh(source, source_ssh)
-    target = get_directory_with_ssh(destination, target_ssh)
+    destination = get_directory_with_ssh(destination, destination_ssh)
 
     if is_path_to_file(source, (source_ssh is not None)):
         sync_source_contents = False
@@ -31,7 +31,7 @@ def get_rsync_command(source: str,
     return ['rsync',
             *options,
             source,
-            target,
+            destination,
             *exclusions]
 
 
