@@ -43,9 +43,17 @@ sysrsync.run(source='/home/user/files',
 `sysrsync.run`
 
 | argument  | type | default | description |
-| ------------- | ------------- | ------------- | ------------- |
+| --------- | ---- | ------- | ----------- |
 | cwd  | str  | `os.getcwd()` | working directory in which subprocess will run the rsync command |
 | strict  | bool | `True` | raises `RsyncError` when rsync return code is different than 0  |
 | verbose | bool | `False` | verbose mode: currently prints rsync command before executing |
 | **kwargs | dict | Not Applicable | arguments that will be forwarded to call to `sysrsync.get_rsync_command` |
+
+`sysrsync.get_rsync_command`
+
+| argument  | type | default | description |
+| --------- | ---- | ------- | ----------- |
+
+
+
 ## 
