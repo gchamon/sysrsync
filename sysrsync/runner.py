@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 
+from .exceptions import RsyncError
 from .command_maker import get_rsync_command
 
 
@@ -18,8 +19,9 @@ def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
         code = process.returncode
         _check_return_code(code, rsync_string)
 
+    return process
+
 
 def _check_return_code(return_code: int, action: str):
     if return_code != 0:
-        print(f"[sysrsync runner] {action} exited with code {return_code}")
-        sys.exit(return_code)
+        raise RsyncError(f"[sysrsync runner] {action} exited with code {return_code}")
