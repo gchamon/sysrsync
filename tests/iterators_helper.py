@@ -16,3 +16,11 @@ def test_tuple_flatten():
     result = iterators.flatten(tuple_input)
 
     eq_(expect, result)
+
+
+def test_tuples_and_lists_list_flatten():
+    tuple_input = (1, (2, 3), [4])
+    expect = [1, 2, 3, 4]
+    result = iterators.flatten(tuple_input)
+
+    eq_(expect, result)

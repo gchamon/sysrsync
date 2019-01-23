@@ -1,4 +1,4 @@
-from sysrsync import get_exclusions, get_rsync_command
+from sysrsync.command_maker import get_exclusions, get_rsync_command
 from sysrsync.exceptions import RemotesError
 from nose.tools import eq_, raises
 
