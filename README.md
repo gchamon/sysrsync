@@ -1,5 +1,5 @@
 # sysrsync
-Python module that wraps system calls to rsync
+Simple and safe rsync wrapper for Python
 
 ## Requirements
 
