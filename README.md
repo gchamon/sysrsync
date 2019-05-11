@@ -1,5 +1,5 @@
 # sysrsync
-Simple and safe rsync wrapper for Python
+Simple and safe native rsync wrapper for Python 3
 
 ## Requirements
 
