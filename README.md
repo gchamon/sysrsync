@@ -22,6 +22,17 @@ sysrsync.run(source='/home/user/foo.txt',
 # runs 'rsync /home/users/foo.txt /home/server/files'
 ```
 
+* sync whole folder
+
+```python
+import sysrsync
+
+sysrsync.run(source='/home/user/files',
+             destination='/home/server/',
+             sync_source_contents=False)
+# runs 'rsync /home/user/files /home/server'
+```
+
 * ssh with options
 
 ```python
