@@ -1,6 +1,8 @@
 # sysrsync
 Simple and safe native rsync wrapper for Python 3
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gchamon_sysrsync&metric=alert_status)](https://sonarcloud.io/dashboard?id=gchamon_sysrsync)
+
 ## Requirements
 
 * rsync
