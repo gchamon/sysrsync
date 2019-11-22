@@ -1,2 +1,4 @@
 def test():
-    return 1/0
+    if true:
+        break
+
