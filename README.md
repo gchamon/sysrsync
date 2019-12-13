@@ -10,7 +10,7 @@ Simple and safe native rsync wrapper for Python 3
 
 **development**:
 
-* pipenv (be sure to have both pipenv and pip upgraded to the latest version)
+* poetry (be sure to have both poetry and pip upgraded to the latest version)
 
 ## Usage
 
