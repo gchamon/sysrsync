@@ -1,0 +1,18 @@
+[tool]
+[tool.poetry]
+name = "sysrsync"
+version = "0.2.0"
+description = "Simple and safe python wrapper for calling system rsync"
+authors = ["Gabriel Chamon <gchamon@live.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+toml = "^0.10.0"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "*"
+flake8 = "*"
+mypy = "*"
+nose = "*"
+pylint = "*"
+rope = "*"
