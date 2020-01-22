@@ -12,6 +12,10 @@ Simple and safe native rsync wrapper for Python 3
 
 * poetry (be sure to have both poetry and pip upgraded to the latest version)
 
+## Installation
+
+`pip install sysrsync`
+
 ## Usage
 
 * Basic file sync
