@@ -1,9 +1,9 @@
+import os
 from typing import Iterable, List, Optional
 
 from .exceptions import RemotesError
 from .helpers.directories import (get_directory_with_ssh,
                                   sanitize_trailing_slash)
-from .helpers.files import is_path_to_file
 from .helpers.iterators import flatten
 
 
@@ -20,7 +20,8 @@ def get_rsync_command(source: str,
     source = get_directory_with_ssh(source, source_ssh)
     destination = get_directory_with_ssh(destination, destination_ssh)
 
-    if is_path_to_file(source, (source_ssh is not None)):
+    # override sync_source_contents if local source is a file
+    if (source_ssh is None) and os.path.isfile(source):
         sync_source_contents = False
 
     source, destination = sanitize_trailing_slash(
