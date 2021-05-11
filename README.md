@@ -111,4 +111,4 @@ sysrsync.run(source='/home/user/files',
 
 **returns**: `List[str]` -> the compiled list of commands to be used directly in `subprocess.run`
 
-**raises**: `RemotesError` when both `source_ssh` and `target_ssh` are set. Normally linux rsync distribution disallows source and destination to be both remotes.
+**raises**: `RemotesError` when both `source_ssh` and `destination_ssh` are set. Normally linux rsync distribution disallows source and destination to be both remotes.
