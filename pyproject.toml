@@ -1,9 +1,10 @@
 [tool]
 [tool.poetry]
 name = "sysrsync"
-version = "0.3.0"
+version = "0.3.1"
 description = "Simple and safe python wrapper for calling system rsync"
 authors = ["Gabriel Chamon <gchamon@live.com>"]
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
