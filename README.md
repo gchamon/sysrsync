@@ -16,6 +16,13 @@ Simple and safe native rsync wrapper for Python 3
 
 `pip install sysrsync`
 
+## Basic rules
+
+- Syncs source contents by default, so it adds a trailing slash to the end of source, unless `sync_source_contents=False` is specified
+- Removes trailing slash from destination
+- Extra arguments are put right after `rsync`
+- Breaks if `source_ssh` and `destination_ssh` are both set
+
 ## Usage
 
 * Basic file sync
