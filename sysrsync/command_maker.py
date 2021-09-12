@@ -11,9 +11,9 @@ def get_rsync_command(source: str,
                       destination: str,
                       source_ssh: Optional[str] = None,
                       destination_ssh: Optional[str] = None,
-                      exclusions: Iterable[str] = [],
+                      exclusions: Optional[Iterable[str]] = None,
                       sync_source_contents: bool = True,
-                      options: Iterable[str] = [],
+                      options: Optional[Iterable[str]] = None,
                       private_key: Optional[str] = None) -> List[str]:
     if source_ssh is not None and destination_ssh is not None:
         raise RemotesError()
@@ -27,15 +27,20 @@ def get_rsync_command(source: str,
 
     source, destination = sanitize_trailing_slash(source, destination, sync_source_contents)
 
-    exclusions = get_exclusions(exclusions)
+    exclusions_options = (get_exclusions(exclusions)
+                          if exclusions
+                          else [])
 
     rsh = (get_rsh_command(private_key)
            if private_key is not None
            else [])
+
+    if options is None:
+        options = []
 
     return ['rsync',
             *options,
             *rsh,
             source,
             destination,
-            *exclusions]
+            *exclusions_options]
