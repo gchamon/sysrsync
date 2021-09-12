@@ -1,10 +1,11 @@
-from sysrsync.command_maker import get_exclusions, get_rsync_command
+from sysrsync.command_maker import get_rsync_command
+from sysrsync import get_exclusions
 from sysrsync.exceptions import RemotesError
 from nose.tools import eq_, raises
 
 
 def test_get_exclusions():
-    "should map list of exclusions to a list with each element following a --exclude statement"
+    """should map list of exclusions to a list with each element following a --exclude statement"""
     exclusions = ['a', 'b']
     expect = ['--exclude', 'a', '--exclude', 'b']
     result = get_exclusions(exclusions)
@@ -13,7 +14,7 @@ def test_get_exclusions():
 
 
 def test_get_exclusions_already_in_rsync_format():
-    "should ignore --exclude in exclusions"
+    """should ignore --exclude in exclusions"""
     exclusions = ['--exclude', 'a', '--exclude', 'b']
     expect = ['--exclude', 'a', '--exclude', 'b']
     result = get_exclusions(exclusions)
@@ -83,7 +84,7 @@ def test_rsync_exclusions_target_ssh():
 
 @raises(RemotesError)
 def test_rsync_throws_both_remotes():
-    "raises RemotesError when both source and destination are remotes"
+    """raises RemotesError when both source and destination are remotes"""
     source_ssh = 'host1'
     source = '/a'
     target_ssh = 'host2'

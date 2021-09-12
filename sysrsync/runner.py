@@ -1,9 +1,8 @@
 import os
-import sys
 import subprocess
 
-from .exceptions import RsyncError
-from .command_maker import get_rsync_command
+from sysrsync.command_maker import get_rsync_command
+from sysrsync.exceptions import RsyncError
 
 
 def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
@@ -11,9 +10,9 @@ def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
     rsync_string = ' '.join(rsync_command)
 
     if verbose is True:
-        print('[sysrsync runner] running command:')
+        print(f'[sysrsync runner] running command on "{cwd}":')
         print(rsync_string)
-    process = subprocess.run(rsync_command, cwd=cwd)
+    process = subprocess.run(rsync_string, cwd=cwd, shell=True)
 
     if strict is True:
         code = process.returncode
