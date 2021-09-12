@@ -79,7 +79,18 @@ sysrsync.run(source='/home/user/files',
              destination_ssh='myserver',
              options=['-a'],
              exclusions=['file_to_exclude', 'unwanted_file'])
-# runs 'rsync -a /home/users/files/ myserver:/home/server/files --exclude file_to_exclude --exclude unwanted_file'
+# runs 'rsync -a /home/user/files/ myserver:/home/server/files --exclude file_to_exclude --exclude unwanted_file'
+```
+* Private key
+
+```python
+import sysrsync
+
+sysrsync.run(source='/home/user/files',
+             destination='/home/server/files',
+             destination_ssh='myserver',
+             private_key="totally_secure_key")
+# runs 'rsync --rsh='ssh -i totally_secure_key' /home/user/files/ myserver:/home/server/files'
 ```
 
 ## API
@@ -95,7 +106,8 @@ sysrsync.run(source='/home/user/files',
 
 **returns**: `subprocess.CompletedProcess`
 
-**raises**: `RsyncError` when `strict = True` and rsync return code is different than 0 ([Success](https://lxadm.com/Rsync_exit_codes#List_of_standard_rsync_exit_codes))
+**raises**:
+- `RsyncError` when `strict = True` and rsync return code is different than 0 ([Success](https://lxadm.com/Rsync_exit_codes#List_of_standard_rsync_exit_codes))
 
 `sysrsync.get_rsync_command`
 
@@ -105,10 +117,22 @@ sysrsync.run(source='/home/user/files',
 | destination | str | - | Destination folder |
 | source_ssh | Optional[str] | None | Remote ssh client where source is located |
 | destination_ssh | Optional[str] | None | Remote ssh client where destination is located |
-| exclusions | Iterable[str] | [] | List of excluded patterns as in rsync's `--exclude` |
+| exclusions | Optional[Iterable[str]] | None | List of excluded patterns as in rsync's `--exclude` |
 | sync_source_contents | bool | True | Abstracts the elusive trailing slash behaviour that `source` normally has when using rsync directly, i.e. when a trailing slash is present in `source`, the folder's content is synchronized with destination. When no trailing slash is present, the folder itself is synchronized with destination. |
-| options | Iterable[str] | [] | List of options to be used right after rsync call, e.g. `['-a', '-v']` translates to `rsync -a -v` |
+| options | Optional[Iterable[str]] | None | List of options to be used right after rsync call, e.g. `['-a', '-v']` translates to `rsync -a -v` |
+| private_key | Optional[str] | None | Configures an explicit key to be used with rsync --rsh command |
 
 **returns**: `List[str]` -> the compiled list of commands to be used directly in `subprocess.run`
 
-**raises**: `RemotesError` when both `source_ssh` and `destination_ssh` are set. Normally linux rsync distribution disallows source and destination to be both remotes.
+**raises**:
+- `RemotesError` when both `source_ssh` and `destination_ssh` are set. Normally linux rsync distribution disallows source and destination to be both remotes.
+- `PrivateKeyError` when `private_key` doesn't exist
+
+# Contributing
+
+- Fork project
+- Install dependencies with `poetry install`
+- Make changes
+- Lint with `poetry run pylint ./sysrsync`
+- Test with `poetry run python -m nose tests/*`
+- Submit changes with a pull request

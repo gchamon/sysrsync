@@ -1,20 +1,21 @@
 import os
+import os.path
 from typing import Iterable, List, Optional
 
-from .exceptions import RemotesError
-from .helpers.directories import (get_directory_with_ssh,
-                                  sanitize_trailing_slash)
-from .helpers.iterators import flatten
+from sysrsync.exceptions import RemotesError
+from sysrsync.helpers.directories import get_directory_with_ssh, sanitize_trailing_slash
+from sysrsync.helpers.rsync import get_exclusions, get_rsh_command
 
 
 def get_rsync_command(source: str,
                       destination: str,
                       source_ssh: Optional[str] = None,
                       destination_ssh: Optional[str] = None,
-                      exclusions: Iterable[str] = [],
+                      exclusions: Optional[Iterable[str]] = None,
                       sync_source_contents: bool = True,
-                      options: Iterable[str] = []) -> List[str]:
-    if (source_ssh is not None and destination_ssh is not None):
+                      options: Optional[Iterable[str]] = None,
+                      private_key: Optional[str] = None) -> List[str]:
+    if source_ssh is not None and destination_ssh is not None:
         raise RemotesError()
 
     source = get_directory_with_ssh(source, source_ssh)
@@ -24,17 +25,22 @@ def get_rsync_command(source: str,
     if (source_ssh is None) and os.path.isfile(source):
         sync_source_contents = False
 
-    source, destination = sanitize_trailing_slash(
-        source, destination, sync_source_contents)
+    source, destination = sanitize_trailing_slash(source, destination, sync_source_contents)
 
-    exclusions = get_exclusions(exclusions)
+    exclusions_options = (get_exclusions(exclusions)
+                          if exclusions
+                          else [])
+
+    rsh = (get_rsh_command(private_key)
+           if private_key is not None
+           else [])
+
+    if options is None:
+        options = []
 
     return ['rsync',
             *options,
+            *rsh,
             source,
             destination,
-            *exclusions]
-
-
-def get_exclusions(exclusions: Iterable[str]) -> Iterable[str]:
-    return flatten((('--exclude', exclusion) for exclusion in exclusions if exclusion != '--exclude'))
+            *exclusions_options]

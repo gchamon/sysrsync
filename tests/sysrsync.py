@@ -1,10 +1,14 @@
-from sysrsync.command_maker import get_exclusions, get_rsync_command
-from sysrsync.exceptions import RemotesError
+from tempfile import TemporaryFile
+
 from nose.tools import eq_, raises
+
+from sysrsync import get_exclusions
+from sysrsync.command_maker import get_rsync_command
+from sysrsync.exceptions import RemotesError, PrivateKeyError
 
 
 def test_get_exclusions():
-    "should map list of exclusions to a list with each element following a --exclude statement"
+    """should map list of exclusions to a list with each element following a --exclude statement"""
     exclusions = ['a', 'b']
     expect = ['--exclude', 'a', '--exclude', 'b']
     result = get_exclusions(exclusions)
@@ -13,7 +17,7 @@ def test_get_exclusions():
 
 
 def test_get_exclusions_already_in_rsync_format():
-    "should ignore --exclude in exclusions"
+    """should ignore --exclude in exclusions"""
     exclusions = ['--exclude', 'a', '--exclude', 'b']
     expect = ['--exclude', 'a', '--exclude', 'b']
     result = get_exclusions(exclusions)
@@ -83,9 +87,35 @@ def test_rsync_exclusions_target_ssh():
 
 @raises(RemotesError)
 def test_rsync_throws_both_remotes():
-    "raises RemotesError when both source and destination are remotes"
+    """raises RemotesError when both source and destination are remotes"""
     source_ssh = 'host1'
     source = '/a'
     target_ssh = 'host2'
     target = '/b'
     get_rsync_command(source, target, source_ssh=source_ssh, destination_ssh=target_ssh)
+
+
+def test_rsync_private_key():
+    """test if correctly creates rsh option when passing a private key"""
+    with TemporaryFile() as temp_file:
+        source_dir = '/home/user/files/'
+        target_dir = '/home/server/files'
+        destination_ssh = 'myserver'
+        expect = ['rsync', f"--rsh='ssh -i {temp_file}'", source_dir, f'{destination_ssh}:{target_dir}']
+        actual = get_rsync_command(source=source_dir,
+                                   destination=target_dir,
+                                   destination_ssh=destination_ssh,
+                                   private_key=temp_file)
+        eq_(expect, actual)
+
+@raises(PrivateKeyError)
+def test_rsync_private_key():
+    """test if get_rsync_command raises PrivateKeyError when key missing"""
+    source_dir = '/home/user/files/'
+    target_dir = '/home/server/files'
+    destination_ssh = 'myserver'
+    private_key = 'this_file_does_not_exist'
+    actual = get_rsync_command(source=source_dir,
+                               destination=target_dir,
+                               destination_ssh=destination_ssh,
+                               private_key=private_key)
