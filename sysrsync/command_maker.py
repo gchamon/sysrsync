@@ -15,7 +15,8 @@ def get_rsync_command(source: str,
                       sync_source_contents: bool = True,
                       options: Optional[Iterable[str]] = None,
                       private_key: Optional[str] = None,
-                      rsh_port: int = 22) -> List[str]:
+                      rsh_port: int = 22,
+                      strict_host_key_checking: bool = True) -> List[str]:
     if source_ssh is not None and destination_ssh is not None:
         raise RemotesError()
 
@@ -32,7 +33,7 @@ def get_rsync_command(source: str,
                           if exclusions
                           else [])
 
-    rsh = (get_rsh_command(private_key, rsh_port)
+    rsh = (get_rsh_command(private_key, rsh_port, strict_host_key_checking)
            if private_key is not None
            else [])
 
