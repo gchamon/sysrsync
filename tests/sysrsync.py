@@ -101,7 +101,7 @@ def test_rsync_private_key():
         source_dir = '/home/user/files/'
         target_dir = '/home/server/files'
         destination_ssh = 'myserver'
-        expect = ['rsync', f"--rsh='ssh -i {temp_file}'", source_dir, f'{destination_ssh}:{target_dir}']
+        expect = ['rsync', f"--rsh='ssh -i {temp_file} -p 22'", source_dir, f'{destination_ssh}:{target_dir}']
         actual = get_rsync_command(source=source_dir,
                                    destination=target_dir,
                                    destination_ssh=destination_ssh,

@@ -12,10 +12,10 @@ def get_exclusions(exclusions: Iterable[str]) -> Iterable[str]:
                     if exclusion != '--exclude'))
 
 
-def get_rsh_command(private_key: str):
+def get_rsh_command(private_key: str, port: int):
     expanded_key_file = os.path.expandvars(os.path.expanduser(private_key))
 
     if not Path(expanded_key_file).exists():
         raise PrivateKeyError(expanded_key_file)
 
-    return [f"--rsh='ssh -i {expanded_key_file}'"]
+    return [f"--rsh='ssh -i {expanded_key_file} -p {str(port)}'"]
