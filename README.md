@@ -121,8 +121,8 @@ sysrsync.run(source='/home/user/files',
 | sync_source_contents | bool | True | Abstracts the elusive trailing slash behaviour that `source` normally has when using rsync directly, i.e. when a trailing slash is present in `source`, the folder's content is synchronized with destination. When no trailing slash is present, the folder itself is synchronized with destination. |
 | options | Optional[Iterable[str]] | None | List of options to be used right after rsync call, e.g. `['-a', '-v']` translates to `rsync -a -v` |
 | private_key | Optional[str] | None | Configures an explicit key to be used with rsync --rsh command |
-| rsh_port | int | 22 | Specify port to be used for --rsh command |
-| strict_host_key_checking | bool | True | set StrictHostKeyChecking property for rsh #cf. https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts |
+| rsh_port | Optional[int] | None | Specify port to be used for --rsh command |
+| strict_host_key_checking | Optional[bool] | None | set StrictHostKeyChecking property for rsh #cf. https://superuser.com/questions/125324/how-can-i-avoid-sshs-host-verification-for-known-hosts |
 
 **returns**: `List[str]` -> the compiled list of commands to be used directly in `subprocess.run`
 
