@@ -12,7 +12,7 @@ def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
     if verbose is True:
         print(f'[sysrsync runner] running command on "{cwd}":')
         print(rsync_string)
-    process = subprocess.run(rsync_string, cwd=cwd, shell=True)
+    process = subprocess.run(rsync_string, cwd=cwd, shell=True, stdout=subprocess.PIPE)
 
     if strict is True:
         code = process.returncode
