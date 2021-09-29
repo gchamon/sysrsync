@@ -28,7 +28,7 @@ def get_rsh_command(private_key: Optional[str] = None, port: Optional[int] = Non
         args.extend(["-p", str(port)])
 
     if strict_host_key_checking is not None:
-        args.extend(["-o", f'"StrictHostKeyChecking {"yes" if strict_host_key_checking else "no"}'])
+        args.extend(["-o", f'"StrictHostKeyChecking {"yes" if strict_host_key_checking else "no"}"'])
 
     string_args = " ".join(args)
 
