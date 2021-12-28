@@ -86,7 +86,7 @@ rope==0.19.0 \
 toml==0.10.2; (python_version >= "2.6" and python_full_version < "3.0.0") or (python_full_version >= "3.3.0") \
     --hash=sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b \
     --hash=sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
-typed-ast==1.4.3; implementation_name == "cpython" and python_version < "3.8" and python_version >= "3.6" \
+typed-ast==1.4.3 \
     --hash=sha256:2068531575a125b87a41802130fa7e29f26c09a2833fea68d9a40cf33902eba6 \
     --hash=sha256:c907f561b1e83e93fad565bac5ba9c22d96a54e7ea0267c708bffe863cbe4075 \
     --hash=sha256:1b3ead4a96c9101bef08f9f7d1217c096f31667617b58de957f690c92378b528 \
