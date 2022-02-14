@@ -122,6 +122,7 @@ sysrsync.run(source='/home/user/files',
 | options | Optional[Iterable[str]] | None | List of options to be used right after rsync call, e.g. `['-a', '-v']` translates to `rsync -a -v` |
 | private_key | Optional[str] | None | Configures an explicit key to be used with rsync --rsh command |
 | rsync_binary | Optional[str] | rsync | The rsync binary to call |
+| **kwargs | dict | Not Applicable | arguments that will be forwarded to call to `subprocess.Popen` |
 
 **returns**: `List[str]` -> the compiled list of commands to be used directly in `subprocess.run`
 
