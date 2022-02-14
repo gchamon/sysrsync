@@ -14,7 +14,9 @@ def get_rsync_command(source: str,
                       exclusions: Optional[Iterable[str]] = None,
                       sync_source_contents: bool = True,
                       options: Optional[Iterable[str]] = None,
-                      private_key: Optional[str] = None) -> List[str]:
+                      private_key: Optional[str] = None,
+                      rsync_binary: Optional[str] = 'rsync',
+                      **kwargs) -> List[str]:
     if source_ssh is not None and destination_ssh is not None:
         raise RemotesError()
 
@@ -38,7 +40,7 @@ def get_rsync_command(source: str,
     if options is None:
         options = []
 
-    return ['rsync',
+    return [rsync_cmd,
             *options,
             *rsh,
             source,
