@@ -32,4 +32,4 @@ def get_rsh_command(private_key: Optional[str] = None, port: Optional[int] = Non
 
     string_args = " ".join(args)
 
-    return [f"--rsh='ssh {string_args}'"]
+    return ["--rsh", f"ssh {string_args}"]
