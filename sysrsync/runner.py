@@ -7,12 +7,13 @@ from sysrsync.exceptions import RsyncError
 
 def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
     rsync_command = get_rsync_command(**kwargs)
+
     rsync_string = ' '.join(rsync_command)
 
     if verbose is True:
         print(f'[sysrsync runner] running command on "{cwd}":')
         print(rsync_string)
-    process = subprocess.run(rsync_string, cwd=cwd, shell=True, stdout=subprocess.PIPE)
+    process = subprocess.run(rsync_command, cwd=cwd, shell=False)
 
     if strict is True:
         code = process.returncode
