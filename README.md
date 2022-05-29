@@ -139,7 +139,7 @@ sysrsync.run(source='/home/user/files',
 - Install dependencies with `poetry install`
 - Make changes
 - Lint with `poetry run pylint ./sysrsync`
-- Test with `poetry run python -m nose tests/*`
+- Test with `poetry run python -m unittest`
 - Run end-to-end tests with `bash end-to-end-tests/run-tests.sh`
 - Submit changes with a pull request
 
