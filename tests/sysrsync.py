@@ -101,11 +101,15 @@ def test_rsync_private_key():
         source_dir = '/home/user/files/'
         target_dir = '/home/server/files'
         destination_ssh = 'myserver'
-        expect = ['rsync', f"--rsh='ssh -i {temp_file}'", source_dir, f'{destination_ssh}:{target_dir}']
+        port = 2222
+        strict_host_key_checking = False
+        expect = ['rsync', f"--rsh='ssh -i {temp_file} -p {port} -o \"StrictHostKeyChecking no\"'", source_dir, f'{destination_ssh}:{target_dir}']
         actual = get_rsync_command(source=source_dir,
                                    destination=target_dir,
                                    destination_ssh=destination_ssh,
-                                   private_key=temp_file)
+                                   private_key=temp_file,
+                                   rsh_port=port,
+                                   strict_host_key_checking=strict_host_key_checking)
         eq_(expect, actual)
 
 @raises(PrivateKeyError)
