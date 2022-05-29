@@ -1,0 +1,28 @@
+---
+version: "2.1"
+services:
+  openssh-server:
+    build:
+      context: ./end-to-end-tests
+      dockerfile: Dockerfile.ssh-server
+    container_name: openssh-server
+    hostname: openssh-server #optional
+    environment:
+      PUID: 1000
+      PGID: 1000
+      PUBLIC_KEY_FILE: /keys/test-key.pub
+      SUDO_ACCESS: false
+      PASSWORD_ACCESS: false
+      USER_NAME: test
+    volumes:
+      - ./end-to-end-tests/keys:/keys:ro
+    ports:
+      - 2222:2222
+  sysrsync-client:
+    build:
+      context: ./end-to-end-tests
+      dockerfile: Dockerfile.sysrsync-client
+    volumes:
+      - ./:/app
+    command: python end-to-end-tests/tests.py
+    working_dir: /app
