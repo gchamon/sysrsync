@@ -1,4 +1,7 @@
 # sysrsync
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 Simple and safe native rsync wrapper for Python 3
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=gchamon_sysrsync&metric=alert_status)](https://sonarcloud.io/dashboard?id=gchamon_sysrsync)
@@ -139,3 +142,23 @@ sysrsync.run(source='/home/user/files',
 - Test with `poetry run python -m nose tests/*`
 - Run end-to-end tests with `bash end-to-end-tests/run-tests.sh`
 - Submit changes with a pull request
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/plazmakeks"><img src="https://avatars.githubusercontent.com/u/25690073?v=4?s=100" width="100px;" alt=""/><br /><sub><b>plazmakeks</b></sub></a><br /><a href="https://github.com/gchamon/sysrsync/commits?author=plazmakeks" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
