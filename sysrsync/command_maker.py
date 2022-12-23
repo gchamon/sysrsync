@@ -34,7 +34,7 @@ def get_rsync_command(source: str,
                           else [])
 
     rsh = (get_rsh_command(private_key, rsh_port, strict_host_key_checking)
-           if any((private_key, rsh_port, strict_host_key_checking))
+           if any((private_key, rsh_port, (strict_host_key_checking is not None)))
            else [])
 
     if options is None:
