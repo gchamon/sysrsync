@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "sysrsync"
-version = "1.1.0"
+version = "1.1.1"
 description = "Simple and safe python wrapper for calling system rsync"
 authors = ["Gabriel Chamon <gchamon@live.com>"]
 readme = "README.md"
