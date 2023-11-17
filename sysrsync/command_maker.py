@@ -14,6 +14,7 @@ def get_rsync_command(source: str,
                       exclusions: Optional[Iterable[str]] = None,
                       sync_source_contents: bool = True,
                       options: Optional[Iterable[str]] = None,
+                      delete: Optional[Iterable[str]] = None,
                       private_key: Optional[str] = None,
                       rsh_port: Optional[int] = None,
                       strict_host_key_checking: Optional[bool] = None) -> List[str]:
@@ -40,8 +41,12 @@ def get_rsync_command(source: str,
     if options is None:
         options = []
 
+    if delete is None:
+        delete  = []
+
     return ['rsync',
             *options,
+            *delete,
             *rsh,
             source,
             destination,
