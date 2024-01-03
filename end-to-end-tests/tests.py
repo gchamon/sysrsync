@@ -11,7 +11,7 @@ import sysrsync
 
 
 class TestE2E(unittest.TestCase):
-    def test_send_file(self):
+    def test_send_file(self) -> None:
         sysrsync.run(source="end-to-end-tests/test-cases/test_file",
                      destination="/tmp/target_test_file",
                      destination_ssh="test@openssh-server",
@@ -19,7 +19,7 @@ class TestE2E(unittest.TestCase):
                      rsh_port=2222,
                      strict_host_key_checking=False)
 
-    def test_send_file_with_spaces(self):
+    def test_send_file_with_spaces(self) -> None:
         sysrsync.run(source="end-to-end-tests/test-cases/file with spaces",
                      destination="/tmp/target_test_file",
                      destination_ssh="test@openssh-server",
