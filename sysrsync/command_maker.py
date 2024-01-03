@@ -17,6 +17,34 @@ def get_rsync_command(source: str,
                       private_key: Optional[str] = None,
                       rsh_port: Optional[int] = None,
                       strict_host_key_checking: Optional[bool] = None) -> List[str]:
+    """
+    Generates the rsync command with the specified options for synchronizing files and
+        directories.
+
+    Args:
+        source (str): The source directory or file path.
+        destination (str): The destination directory or file path.
+        source_ssh (Optional[str], optional): The SSH prefix for the source. Defaults
+            to None.
+        destination_ssh (Optional[str], optional): The SSH prefix for the destination.
+            Defaults to None.
+        exclusions (Optional[Iterable[str]], optional): The exclusions to be applied
+            during synchronization. Defaults to None.
+        sync_source_contents (bool, optional): Whether to sync the contents of the
+            source directory. Defaults to True.
+        options (Optional[Iterable[str]], optional): Additional rsync options. Defaults
+            to None.
+        private_key (Optional[str], optional): The path to the private key file for SSH
+            authentication. Defaults to None.
+        rsh_port (Optional[int], optional): The port number to use for the SSH
+            connection. Defaults to None.
+        strict_host_key_checking (Optional[bool], optional): Whether to perform strict
+            host key checking. Defaults to None.
+
+    Returns:
+        List[str]: A list containing the rsync command and its options for
+            synchronizing files and directories.
+    """
     if source_ssh is not None and destination_ssh is not None:
         raise RemotesError()
 
