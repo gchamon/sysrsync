@@ -45,9 +45,6 @@ def sanitize_trailing_slash(source_dir, target_dir, sync_sourcedir_contents=True
 
 
 def strip_trailing_slash(directory: str) -> str:
-    return (directory[:-1]
-            if directory.endswith('/')
-            else directory)
     """
     Strips the trailing slash from the directory path if it exists.
 
@@ -59,11 +56,11 @@ def strip_trailing_slash(directory: str) -> str:
             returns the directory path as is.
     """
 
+    return (directory[:-1]
+            if directory.endswith('/')
+            else directory)
 
 def add_trailing_slash(directory: str) -> str:
-    return (directory
-            if directory.endswith('/')
-            else f'{directory}/')
     """
     Adds a trailing slash to the directory path if it doesn't already have one.
 
@@ -74,3 +71,7 @@ def add_trailing_slash(directory: str) -> str:
         str: The directory path with a trailing slash, if it doesn't already have one.
             Otherwise, returns the directory path as is.
     """
+
+    return (directory
+            if directory.endswith('/')
+            else f'{directory}/')
