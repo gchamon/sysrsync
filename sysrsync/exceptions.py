@@ -1,3 +1,4 @@
+"""Exceptions for sysrsync."""
 class RemotesError(Exception):
     """
     Exception raised when both the source and destination are remote.
@@ -8,14 +9,14 @@ class RemotesError(Exception):
     """
 
     def __init__(self):
+        """Initialize the RemotesError exception."""
         message = 'source and destination cannot both be remote'
         super().__init__(message)
 
 
 class RsyncError(Exception):
-    """
-    Exception raised for errors related to rsync operations.
-    """
+    """Exception raised for errors related to rsync operations."""
+
     pass
 
 
@@ -31,5 +32,6 @@ class PrivateKeyError(Exception):
     """
 
     def __init__(self, key_file):
+        """Initialize the PrivateKeyError exception."""
         message = f'Private Key File "{key_file}" does not exist'
         super().__init__(message)

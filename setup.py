@@ -1,3 +1,4 @@
+"""Setup script for sysrsync."""
 import setuptools
 import toml
 

@@ -1,9 +1,10 @@
+"""Directory helper functions for sysrsync."""
 from typing import Tuple, Optional
 
 
 def get_directory_with_ssh(directory: str, ssh: Optional[str]) -> str:
     """
-    Returns the directory path with SSH prefix if SSH is provided.
+    Return the directory path with SSH prefix if SSH is provided.
 
     Args:
         directory (str): The directory path.
@@ -46,7 +47,7 @@ def sanitize_trailing_slash(source_dir, target_dir, sync_sourcedir_contents=True
 
 def strip_trailing_slash(directory: str) -> str:
     """
-    Strips the trailing slash from the directory path if it exists.
+    Strip the trailing slash from the directory path if it exists.
 
     Args:
         directory (str): The directory path.
@@ -55,14 +56,12 @@ def strip_trailing_slash(directory: str) -> str:
         str: The directory path without the trailing slash, if present. Otherwise,
             returns the directory path as is.
     """
-
     return (directory[:-1]
             if directory.endswith('/')
             else directory)
 
 def add_trailing_slash(directory: str) -> str:
-    """
-    Adds a trailing slash to the directory path if it doesn't already have one.
+    """Add a trailing slash to the directory path if it doesn't already have one.
 
     Args:
         directory (str): The directory path.
@@ -71,7 +70,6 @@ def add_trailing_slash(directory: str) -> str:
         str: The directory path with a trailing slash, if it doesn't already have one.
             Otherwise, returns the directory path as is.
     """
-
     return (directory
             if directory.endswith('/')
             else f'{directory}/')

@@ -1,3 +1,4 @@
+"""Unit tests for the sysrsync."""
 import unittest
 from tempfile import NamedTemporaryFile
 
@@ -7,9 +8,8 @@ from sysrsync.exceptions import RemotesError, PrivateKeyError
 
 
 class TestPackage(unittest.TestCase):
-    """
-    Unit tests for the sysrsync package.
-    """
+    """Unit tests for the sysrsync package."""
+
     def test_get_exclusions(self):
         """Test the get_exclusions function."""
         exclusions = ['a', 'b']

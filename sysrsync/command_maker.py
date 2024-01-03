@@ -1,3 +1,4 @@
+"""Generates the rsync command."""
 import os
 import os.path
 from typing import Iterable, List, Optional
@@ -17,9 +18,7 @@ def get_rsync_command(source: str,
                       private_key: Optional[str] = None,
                       rsh_port: Optional[int] = None,
                       strict_host_key_checking: Optional[bool] = None) -> List[str]:
-    """
-    Generates the rsync command with the specified options for synchronizing files and
-        directories.
+    """Generate rsync command with the specified options for synchronizing files and directories.
 
     Args:
         source (str): The source directory or file path.

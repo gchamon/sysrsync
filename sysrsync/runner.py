@@ -1,3 +1,4 @@
+"""Runs the rsync command with the specified options."""
 import os
 import subprocess
 
@@ -6,8 +7,7 @@ from sysrsync.exceptions import RsyncError
 
 
 def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
-    """
-    Runs the rsync command with the specified options.
+    """Run the rsync command with the specified options.
 
     Args:
         cwd (str, optional): The current working directory. Defaults to the current
@@ -39,8 +39,7 @@ def run(cwd=os.getcwd(), strict=True, verbose=False, **kwargs):
 
 
 def _check_return_code(return_code: int, action: str):
-    """
-    Checks the return code of an action and raises an exception if it is non-zero.
+    """Check the return code of an action and raises an exception if it is non-zero.
 
     Args:
         return_code (int): The return code of the action.

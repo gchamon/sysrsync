@@ -1,12 +1,12 @@
+"""Unit tests for the directories helper module."""
 import unittest
 
 from sysrsync.helpers import directories
 
 
 class TestDirectoriesHelper(unittest.TestCase):
-    """
-    Unit tests for the directories helper module.
-    """
+    """Unit tests for the directories helper module."""
+
     def test_strip_trailing_slash(self):
         """Test the strip_trailing_slash function."""
         test_dir = '/a/'

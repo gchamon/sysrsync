@@ -1,3 +1,4 @@
+"""Test end-to-end functionality for sysrsync."""
 import inspect
 import os
 import sys
@@ -11,7 +12,10 @@ import sysrsync
 
 
 class TestE2E(unittest.TestCase):
+    """Test end-to-end functionality."""
+
     def test_send_file(self):
+        """Test sending a file from local to remote."""
         sysrsync.run(source="end-to-end-tests/test-cases/test_file",
                      destination="/tmp/target_test_file",
                      destination_ssh="test@openssh-server",
@@ -20,6 +24,7 @@ class TestE2E(unittest.TestCase):
                      strict_host_key_checking=False)
 
     def test_send_file_with_spaces(self):
+        """Test sending a file with spaces from local to remote."""
         sysrsync.run(source="end-to-end-tests/test-cases/file with spaces",
                      destination="/tmp/target_test_file",
                      destination_ssh="test@openssh-server",
