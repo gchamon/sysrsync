@@ -11,9 +11,11 @@ def get_exclusions(exclusions: Iterable[str]) -> Iterable[str]:
                     for exclusion in exclusions
                     if exclusion != '--exclude'))
 
-
-def get_rsh_command(private_key: Optional[str] = None, port: Optional[int] = None, strict_host_key_checking: Optional[bool] = None):
-
+def get_rsh_command(
+    private_key: Optional[str] = None,
+    port: Optional[int] = None,
+    strict_host_key_checking: Optional[bool] = None,
+) -> List[str]:
     args: List[str] = []
 
     if private_key is not None:
