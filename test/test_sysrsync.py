@@ -1,7 +1,7 @@
 import unittest
 from tempfile import NamedTemporaryFile
 
-from sysrsync import get_exclusions
+from sysrsync.helpers.rsync import get_exclusions
 from sysrsync.command_maker import get_rsync_command
 from sysrsync.exceptions import RemotesError, PrivateKeyError
 
