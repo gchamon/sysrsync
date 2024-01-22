@@ -1,3 +1,6 @@
+[build-system]
+requires = ["setuptools", "toml"]
+
 [tool]
 [tool.poetry]
 name = "sysrsync"
